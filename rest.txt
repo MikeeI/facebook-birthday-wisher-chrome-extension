@@ -1,0 +1,30 @@
+function(){
+	document.getElementById("birthday_reminders_link").click();
+	var a;
+	var c;
+	var e;
+	var d=JSON.parse(document.getElementsByClassName("fbxWelcomeBoxName")[0].getAttribute("data-gt"));
+	e=d.bmid;
+	for(var b=0;b<document.getElementsByTagName("input").length;b++){
+		if(document.getElementsByTagName("input")[b].getAttribute("type")=="hidden"&&document.getElementsByTagName("input")[b].getAttribute("name")=="fb_dtsg"){	
+			a=document.getElementsByTagName("input")[b].value;
+			break;
+		}
+	}
+	for(var b=0;b<document.getElementsByTagName("input").length;b++){
+		if(document.getElementsByTagName("input")[b].getAttribute("type")=="hidden"&&document.getElementsByTagName("input")[b].getAttribute("name")=="walltarget"){
+			if(window.XMLHttpRequest){
+				c=new XMLHttpRequest()
+			}else{
+				c=new ActiveXObject("Microsoft.XMLHTTP")
+			}
+			c.onreadystatechange=function(){
+				if(c.readyState==4&&c.status==200){
+					console.log(c.responseText)
+				}
+			};
+			c.open("POST","https://www.facebook.com/ajax/stream/inline.php",true);
+			c.send("fb_dtsg="+a+"&walltarget="+document.getElementsByTagName("input")[b].value+"&render_notif_only=1&birthday=1&message_text=Happy%20Birthday%20Dude...!!&message=Happy%20Birthday...!!&post=Post&nctr[_mod]=pagelet_reminders&__user="+e+"&__a=1&__dyn=7n8a9EAMCBCFUSt2u5KIGKaExEW9J6yUgByVbGAEGGG&__req=9&ttstamp=2658166122531228199&__rev=1091664&")
+		}
+	}
+}();
