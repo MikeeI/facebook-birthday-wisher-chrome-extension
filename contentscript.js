@@ -1,1 +1,1 @@
- chrome.extension.sendRequest({}, function(response) {});
+document.getElementById("birthday_reminders_link").click();
